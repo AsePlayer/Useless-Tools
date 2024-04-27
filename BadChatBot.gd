@@ -49,8 +49,17 @@ func _on_chat_button_button_down():
 	
 func ai_send_message():
 	var message:String
+	var constructed_message:String
+	var counter:int = 0
+	
 	message = chat_bot_rejections.pick_random()
-	message_list.add_item(" Bad-GPT: " + message)
+	message_list.add_item(" Bad-GPT: ")
+	
+	while counter < len(message):
+		constructed_message += message[counter]
+		counter += 1
+		message_list.set_item_text(message_list.item_count - 1," Bad-GPT: " + constructed_message)
+		await get_tree().create_timer(.02).timeout
 	pass
 
 func ai_send_greeting():
