@@ -12,7 +12,7 @@ func _on_button_button_down():
 func generate_fake_apology(apologizing_for:String):
 	fake_apology.text = fake_apologies.pick_random() + " " + apologizing_for + " " + fake_excuses.pick_random()
 
-func _on_line_edit_gui_input(event:InputEventKey):
-	if event.keycode == 4194309 and timer.is_stopped(): 
+func _on_line_edit_gui_input(event):
+	if event is InputEventKey and event.keycode == 4194309 and timer.is_stopped(): 
 		_on_button_button_down() # Enter key activates button
 		timer.start()
