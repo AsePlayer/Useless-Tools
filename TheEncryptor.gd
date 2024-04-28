@@ -2,15 +2,7 @@ extends Node2D
 
 @onready var line_edit = $LineEdit
 @onready var text = $ColorRect/Text
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+@onready var timer = $Timer
 
 
 func _on_encrypt_button_down():
@@ -30,3 +22,10 @@ func _on_encrypt_button_down():
 func _on_decrypt_button_down():
 	if text.text != "": text.text = "That's a secret :)"
 	pass # Replace with function body.
+
+
+func _on_line_edit_gui_input(event):
+	if event is InputEventKey and event.keycode == 4194309 and timer.is_stopped(): 
+		if line_edit.text == "": _on_decrypt_button_down()
+		else: _on_encrypt_button_down() # Enter key activates button
+		timer.start()

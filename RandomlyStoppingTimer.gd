@@ -7,11 +7,6 @@ extends Node2D
 
 var is_timer_active
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if is_timer_active:
@@ -38,3 +33,9 @@ func change_timer_state(state:bool):
 func _on_random_stop_timer_timeout():
 	change_timer_state(false)
 	pass # Replace with function body.
+
+
+func _on_line_edit_gui_input(event):
+	if event is InputEventKey and event.keycode == 4194309 and timer.is_stopped(): 
+		_on_button_button_down() # Enter key activates button
+		timer.start()
