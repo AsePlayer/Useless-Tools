@@ -3,9 +3,11 @@ extends Node2D
 @onready var line_edit = $LineEdit
 @onready var text = $ColorRect/Text
 @onready var timer = $Timer
+@onready var audio = $"../RedPanel/Audio"
 
 
 func _on_encrypt_button_down():
+	audio.play_click()
 	var password:String = line_edit.text
 	
 	var counter = 0
@@ -20,6 +22,7 @@ func _on_encrypt_button_down():
 
 
 func _on_decrypt_button_down():
+	audio.play_click()
 	if text.text != "": text.text = "That's a secret :)"
 	pass # Replace with function body.
 

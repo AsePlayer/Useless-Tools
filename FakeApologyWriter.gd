@@ -5,8 +5,10 @@ extends Node2D
 
 @export var fake_apologies:Array[String]
 @export var fake_excuses:Array[String]
+@onready var audio = $"../RedPanel/Audio"
 
 func _on_button_button_down():
+	audio.play_click()
 	generate_fake_apology(line_edit.text)
 
 func generate_fake_apology(apologizing_for:String):

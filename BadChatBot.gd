@@ -11,6 +11,7 @@ extends Node2D
 
 var ai_typing:bool = false
 @onready var ai_timer = $Timer
+@onready var audio = $"../RedPanel/Audio"
 
 var scroll_bar:VScrollBar
 
@@ -40,7 +41,8 @@ func _process(delta):
 
 
 func _on_chat_button_button_down():
-	message_list.add_item(" You: " + chat_message.text)
+	audio.play_click()
+	message_list.add_item("You: " + chat_message.text)
 	chat_message.text = ""
 	ai_typing = true
 	ai_timer.wait_time = randf_range(3,15)
@@ -53,7 +55,7 @@ func ai_send_message():
 	var counter:int = 0
 	
 	message = chat_bot_rejections.pick_random()
-	message_list.add_item(" Bad-GPT: ")
+	message_list.add_item("Bad-GPT: ")
 	
 	while counter < len(message):
 		constructed_message += message[counter]
@@ -65,7 +67,7 @@ func ai_send_message():
 func ai_send_greeting():
 	var message:String
 	message = chat_bot_greetings.pick_random()
-	message_list.add_item(" Bad-GPT: " + message)
+	message_list.add_item("Bad-GPT: " + message)
 	pass
 	
 
